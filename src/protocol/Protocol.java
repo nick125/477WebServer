@@ -50,7 +50,10 @@ public class Protocol {
     
     public static final int MOVED_PERMANENTLY_CODE = 301;
     public static final String MOVED_PERMANENTLY_TEXT = "Moved Permanently";
-    
+
+    public static final String NOT_MODIFIED_TEXT = "Not Modified";
+    public static final int NOT_MODIFIED_CODE = 304;
+
     public static final int BAD_REQUEST_CODE = 400;
     public static final String BAD_REQUEST_TEXT = "Bad Request";
     
@@ -91,7 +94,7 @@ public class Protocol {
     public static final String OPEN = "Keep-Alive";
     public static final String DEFAULT_FILE = "index.html";
     public static final String MIME_TEXT = "text";
-    
+
     /**
      * Returns a formatted String containing server information.<br/>
      * e.g. <tt>SimpleWebServer(SWS)/1.0.0 (Mac OS X/10.5.8/i386)</tt>

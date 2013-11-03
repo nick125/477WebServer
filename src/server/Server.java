@@ -21,9 +21,12 @@
 
 package server;
 
+import plugins.IRequestHandler;
+
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 /**
  * This represents a welcoming server for the incoming
@@ -36,6 +39,8 @@ public class Server implements Runnable {
     private boolean stop;
     private ServerSocket socket;
 
+    private ArrayList<IRequestHandler> requestHandlers;
+
     private long connections;
     private long serviceTime;
 
@@ -47,6 +52,8 @@ public class Server implements Runnable {
         this.stop = false;
         this.connections = 0;
         this.serviceTime = 0;
+
+        this.requestHandlers = new ArrayList<IRequestHandler>();
     }
 
     /**
@@ -56,6 +63,11 @@ public class Server implements Runnable {
      */
     public int getPort() {
         return port;
+    }
+
+    public ArrayList<IRequestHandler> getRequestHandlers()
+    {
+        return this.requestHandlers;
     }
 
     /**

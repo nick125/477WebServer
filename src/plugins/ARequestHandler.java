@@ -4,10 +4,20 @@ import protocol.HttpRequest;
 import protocol.HttpResponse;
 import protocol.Protocol;
 
+import java.util.ArrayList;
+
 /**
  * Base request handler
  */
 public abstract class ARequestHandler implements IRequestHandler {
+    ArrayList<String> roots = new ArrayList<String>();
+
+    @Override
+    public boolean handlesPath(String path)
+    {
+        return roots.contains(path);
+    }
+
     @Override
     public HttpResponse handleRequest(HttpRequest request) {
         switch (request.getMethod())

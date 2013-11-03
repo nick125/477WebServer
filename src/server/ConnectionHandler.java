@@ -21,6 +21,7 @@
 
 package server;
 
+import plugins.IRequestHandler;
 import protocol.HttpRequest;
 import protocol.HttpResponse;
 import protocol.Protocol;
@@ -29,6 +30,7 @@ import protocol.ProtocolException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 /**
  * This class is responsible for handling a incoming request
@@ -41,10 +43,12 @@ import java.net.Socket;
 public class ConnectionHandler implements Runnable {
     private Server server;
     private Socket socket;
+    private IRequestHandler defaultRequestHandler;
 
     public ConnectionHandler(Server server, Socket socket) {
         this.server = server;
         this.socket = socket;
+        this.defaultRequestHandler = new DefaultRequestHandler();
     }
 
     /**
@@ -82,6 +86,7 @@ public class ConnectionHandler implements Runnable {
         // At this point we have the input and output stream of the socket
         HttpRequest request = null;
         HttpResponse response = null;
+
         try {
             request = HttpRequest.read(inStream);
         } catch (ProtocolException pe) {
@@ -118,19 +123,12 @@ public class ConnectionHandler implements Runnable {
 
             switch (request.getMethod()) {
                 case GET:
-                    // TODO: Do something
-                    break;
                 case POST:
-                    // TODO: Do something
-                    break;
                 case HEAD:
-                    // TODO: do something
-                    break;
                 case DELETE:
-                    // TODO: do something
-                    break;
                 case PUT:
-                    // TODO: do something
+                    IRequestHandler handler = getHandlerForURI(request.getUri());
+                    response = handler.handleRequest(request);
                     break;
                 default:
                     response = HttpResponse.create400BadRequest(Protocol.CLOSE);
@@ -143,6 +141,35 @@ public class ConnectionHandler implements Runnable {
         }
 
         writeResponse(start, outStream, response);
+    }
+
+    private IRequestHandler getHandlerForURI(String URI)
+    {
+        String[] URISegments = URI.split("/");
+
+        // Start at the most specific and go to least specific
+        for (int i = URISegments.length; i > 0; i--)
+        {
+            // Create the path segment
+            StringBuilder buffer = new StringBuilder();
+            for (int j = 0; i > j; j++)
+            {
+                // TODO: this probably isn't right.
+                buffer.append("/");
+                buffer.append(URISegments[j]);
+            }
+
+            // Now, try to find a IRequestHandler that will handle this
+            ArrayList<IRequestHandler> requestHandlers = this.server.getRequestHandlers();
+            for (int handlerIdx = 0; handlerIdx < requestHandlers.size(); handlerIdx++)
+            {
+                IRequestHandler handler = requestHandlers.get(handlerIdx);
+                if (handler.handlesPath(buffer.toString()))
+                    return handler;
+            }
+        }
+
+        return this.defaultRequestHandler;
     }
 
     private void writeResponse(long start, OutputStream outStream, HttpResponse response) {
@@ -163,5 +190,18 @@ public class ConnectionHandler implements Runnable {
         // Get the end time
         long end = System.currentTimeMillis();
         this.server.incrementServiceTime(end - start);
+    }
+
+    private class DefaultRequestHandler implements IRequestHandler {
+        @Override
+        public boolean handlesPath(String path) {
+            return true;
+        }
+
+        @Override
+        public HttpResponse handleRequest(HttpRequest request)
+        {
+            return HttpResponse.create404NotFound(Protocol.CLOSE);
+        }
     }
 }

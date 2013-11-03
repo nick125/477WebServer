@@ -8,4 +8,6 @@ import protocol.HttpResponse;
  */
 public interface IRequestHandler {
     HttpResponse handleRequest(HttpRequest request);
+
+    boolean handlesPath(String path);
 }

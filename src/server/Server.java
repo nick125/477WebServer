@@ -34,7 +34,6 @@ import java.net.Socket;
  * @author Chandan R. Rupakheti (rupakhet@rose-hulman.edu)
  */
 public class Server implements Runnable {
-    private String rootDirectory;
     private int port;
     private boolean stop;
     private ServerSocket welcomeSocket;
@@ -45,27 +44,15 @@ public class Server implements Runnable {
     private WebServer window;
 
     /**
-     * @param rootDirectory
      * @param port
      */
-    public Server(String rootDirectory, int port, WebServer window) {
-        this.rootDirectory = rootDirectory;
+    public Server(int port, WebServer window) {
         this.port = port;
         this.stop = false;
         this.connections = 0;
         this.serviceTime = 0;
         this.window = window;
     }
-
-    /**
-     * Gets the root directory for this web server.
-     *
-     * @return the rootDirectory
-     */
-    public String getRootDirectory() {
-        return rootDirectory;
-    }
-
 
     /**
      * Gets the port number for this web server.
@@ -83,8 +70,10 @@ public class Server implements Runnable {
      * @return
      */
     public synchronized double getServiceRate() {
-        if (this.serviceTime == 0)
+        if (this.serviceTime == 0) {
             return Long.MIN_VALUE;
+        }
+
         double rate = this.connections / (double) this.serviceTime;
         rate = rate * 1000;
         return rate;
@@ -159,13 +148,11 @@ public class Server implements Runnable {
     }
 
     /**
-     * Checks if the server is stopeed or not.
+     * Checks if the server is stopped or not.
      *
      * @return
      */
-    public boolean isStoped() {
-        if (this.welcomeSocket != null)
-            return this.welcomeSocket.isClosed();
-        return true;
+    public boolean isStopped() {
+        return this.welcomeSocket != null ? this.welcomeSocket.isClosed() : true;
     }
 }

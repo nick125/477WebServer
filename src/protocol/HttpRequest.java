@@ -36,7 +36,7 @@ import java.util.StringTokenizer;
  * @author Chandan R. Rupakheti (rupakhet@rose-hulman.edu)
  */
 public class HttpRequest {
-    private String method;
+    private HttpMethod method;
     private String uri;
     private String version;
     private Map<String, String> header;
@@ -52,7 +52,7 @@ public class HttpRequest {
      *
      * @return the method
      */
-    public String getMethod() {
+    public HttpMethod getMethod() {
         return method;
     }
 
@@ -111,9 +111,15 @@ public class HttpRequest {
             throw new ProtocolException(Protocol.BAD_REQUEST_CODE, Protocol.BAD_REQUEST_TEXT);
         }
 
-        request.method = tokenizer.nextToken();        // GET
-        request.uri = tokenizer.nextToken();        // /somedir/page.html
-        request.version = tokenizer.nextToken();    // HTTP/1.1
+        String method = tokenizer.nextToken();
+
+        try {
+            request.method = HttpMethod.valueOf(method);
+        } catch (IllegalArgumentException e) {
+            throw new ProtocolException(Protocol.NOT_IMPLEMENTED_CODE, Protocol.NOT_IMPLEMENTED_TEXT);
+        }
+        request.uri = tokenizer.nextToken();
+        request.version = tokenizer.nextToken();
 
         line = reader.readLine().trim();
 

@@ -26,7 +26,6 @@ import protocol.HttpResponse;
 import protocol.Protocol;
 import protocol.ProtocolException;
 
-import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -58,6 +57,7 @@ public class ConnectionHandler implements Runnable {
         return socket;
     }
 
+
     /**
      * The entry point for connection handler. It first parses
      * incoming request and creates a {@link HttpRequest} object,
@@ -65,11 +65,11 @@ public class ConnectionHandler implements Runnable {
      * and sends the response back to the client (web browser).
      */
     public void run() {
-        // Get the start time
+        // Get the request start time
         long start = System.currentTimeMillis();
 
-        InputStream inStream = null;
-        OutputStream outStream = null;
+        InputStream inStream;
+        OutputStream outStream;
 
         try {
             inStream = this.socket.getInputStream();
@@ -78,9 +78,7 @@ public class ConnectionHandler implements Runnable {
             // Cannot do anything if we have exception reading input or output stream
             e.printStackTrace();
 
-            server.incrementConnections(1);
-            long end = System.currentTimeMillis();
-            this.server.incrementServiceTime(end - start);
+            incrementCounter(start);
             return;
         }
 
@@ -89,104 +87,82 @@ public class ConnectionHandler implements Runnable {
         HttpResponse response = null;
         try {
             request = HttpRequest.read(inStream);
-//			System.out.println(request);
         } catch (ProtocolException pe) {
             // We have some sort of protocol exception. Get its status code and create response
             // We know only two kind of exception is possible inside fromInputStream
             // Protocol.BAD_REQUEST_CODE and Protocol.NOT_SUPPORTED_CODE
             int status = pe.getStatus();
-            if (status == Protocol.BAD_REQUEST_CODE) {
-                response = HttpResponse.create400BadRequest(Protocol.CLOSE);
-            } else if (status == Protocol.NOT_SUPPORTED_CODE) {
-                response = HttpResponse.create505NotSupported(Protocol.CLOSE);
+
+            switch (status) {
+                case Protocol.NOT_SUPPORTED_CODE:
+                    writeResponse(start, outStream, HttpResponse.create505NotSupported(Protocol.CLOSE));
+                    break;
+                case Protocol.BAD_REQUEST_CODE:
+                default:
+                    writeResponse(start, outStream, HttpResponse.create400BadRequest(Protocol.CLOSE));
+                    break;
             }
+
+            return;
         } catch (Exception e) {
             e.printStackTrace();
-            // For any other error, we will create bad request response as well
-            response = HttpResponse.create400BadRequest(Protocol.CLOSE);
-        }
 
-        if (response != null) {
-            // there was an error, now write the response object to the socket
-            try {
-                response.write(outStream);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            server.incrementConnections(1);
-            // Get the end time
-            long end = System.currentTimeMillis();
-            this.server.incrementServiceTime(end - start);
+            // For any other error, we will create bad request response as well
+            writeResponse(start, outStream, HttpResponse.create400BadRequest(Protocol.CLOSE));
             return;
         }
 
         try {
+            // Check if the protocol is acceptable
             if (!request.getVersion().equalsIgnoreCase(Protocol.VERSION)) {
-                response = HttpResponse.create505NotSupported(Protocol.CLOSE);
-            } else if (request.getMethod().equalsIgnoreCase(Protocol.GET) || request.getMethod().equalsIgnoreCase(Protocol.HEAD)) {
-                System.out.println("received a GET or HEAD request");
-//				Map<String, String> header = request.getHeaders();
-//				String date = header.get("if-modified-since");
-//				String hostName = header.get("host");
-
-                String uri = request.getUri();
-                String rootDirectory = server.getRootDirectory();
-                File file = new File(rootDirectory + uri);
-                if (file.exists()) {
-                    if (file.isDirectory()) {
-                        // Look for default index.html file in a directory
-                        String location = rootDirectory + uri + System.getProperty("file.separator") + Protocol.DEFAULT_FILE;
-                        file = new File(location);
-                        if (file.exists()) {
-                            response = HttpResponse.create200OK(file, Protocol.CLOSE, request.getMethod().equalsIgnoreCase(Protocol.GET));
-                        } else {
-                            response = HttpResponse.create404NotFound(Protocol.CLOSE);
-                        }
-                    } else { // Its a file
-                        response = HttpResponse.create200OK(file, Protocol.CLOSE, request.getMethod().equalsIgnoreCase(Protocol.GET));
-                    }
-                } else {
-                    response = HttpResponse.create404NotFound(Protocol.CLOSE);
-                }
-            } else if (request.getMethod().equalsIgnoreCase(Protocol.POST) || request.getMethod().equalsIgnoreCase(Protocol.PUT)) {
-                System.out.println("received a POST or PUT request");
-                File file = new File(server.getRootDirectory() + request.getUri());
-                if (file.exists() && !file.isDirectory()) {
-                    // parse body for post/addHeader data
-                    Map<String, String> values = getPutPostParameters(request.getBody(), request.getMethod().equalsIgnoreCase(Protocol.PUT));
-                    // TODO do something with this map once there is an application
-                    if (values.isEmpty())
-                        response = HttpResponse.create200OK(file, Protocol.CLOSE, false);
-                    else
-                        response = HttpResponse.create201Created(Protocol.CLOSE);
-                } else
-                    response = HttpResponse.create404NotFound(Protocol.CLOSE);
-            } else if (request.getMethod().equalsIgnoreCase(Protocol.DELETE)) {
-                System.out.println("received a DELETE request");
-                File file = new File(server.getRootDirectory() + request.getUri());
-                if (file.exists() && !file.isDirectory()) {
-                    System.out.println("DELETE request received for " + server.getRootDirectory() + request.getUri());
-                    // TODO actually delete the file (but not really)
-                    // file.delete();
-                    response = HttpResponse.create200OK(file, Protocol.CLOSE, false);
-                } else
-                    response = HttpResponse.create404NotFound(Protocol.CLOSE);
-            } else {
-                // unknown method
-                response = HttpResponse.create400BadRequest(Protocol.CLOSE);
+                writeResponse(start, outStream, HttpResponse.create505NotSupported(Protocol.CLOSE));
+                return;
             }
+
+            switch (request.getMethod()) {
+                case GET:
+                    // TODO: Do something
+                    break;
+                case POST:
+                    // TODO: Do something
+                    break;
+                case HEAD:
+                    // TODO: do something
+                    break;
+                case DELETE:
+                    // TODO: do something
+                    break;
+                case PUT:
+                    // TODO: do something
+                    break;
+                default:
+                    response = HttpResponse.create400BadRequest(Protocol.CLOSE);
+                    break;
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
+            response = HttpResponse.create500InternalServerError(Protocol.CLOSE);
         }
 
-        try {
-            response.write(outStream);
-            socket.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        writeResponse(start, outStream, response);
+    }
 
+    private void writeResponse(long start, OutputStream outStream, HttpResponse response) {
+        if (response != null) {
+            try {
+                response.write(outStream);
+                socket.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            incrementCounter(start);
+        }
+    }
+
+    private void incrementCounter(long start) {
         server.incrementConnections(1);
+        // Get the end time
         long end = System.currentTimeMillis();
         this.server.incrementServiceTime(end - start);
     }

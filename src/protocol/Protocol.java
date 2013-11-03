@@ -60,6 +60,9 @@ public class Protocol {
     public static final int NOT_FOUND_CODE = 404;
     public static final String NOT_FOUND_TEXT = "Not Found";
 
+    public static final int NOT_IMPLEMENTED_CODE = 501;
+    public static final String NOT_IMPLEMENTED_TEXT = "Not Implemented";
+
     public static final int NOT_SUPPORTED_CODE = 505;
     public static final String NOT_SUPPORTED_TEXT = "HTTP Version Not Supported";
 
@@ -94,6 +97,7 @@ public class Protocol {
     public static final String OPEN = "Keep-Alive";
     public static final String DEFAULT_FILE = "index.html";
     public static final String MIME_TEXT = "text";
+
 
     /**
      * Returns a formatted String containing server information.<br/>

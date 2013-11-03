@@ -18,71 +18,71 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/lgpl.html>.
  * 
  */
- 
+
 package protocol;
 
 /**
  * This class is used to represent exceptions in processing
  * HTTP protocol.
- * 
+ *
  * @author Chandan R. Rupakheti (rupakhet@rose-hulman.edu)
  */
 public class ProtocolException extends Exception {
-	private static final long serialVersionUID = -2475212356774585742L;
-	
-	private int status;
+    private static final long serialVersionUID = -2475212356774585742L;
 
-	/**
-	 * Creates exception object with default message and default code.
-	 */
-	public ProtocolException() {
-		super("An error occured while executing http protocol.");
-		this.status = Protocol.NOT_SUPPORTED_CODE;
-	}
+    private int status;
 
-	/**
-	 * Creates exception object with supplied exception message.
-	 * 
-	 * @param message The message for the exception.
-	 */
-	public ProtocolException(String message) {
-		super(message);
-		this.status = Protocol.NOT_SUPPORTED_CODE;
-	}
+    /**
+     * Creates exception object with default message and default code.
+     */
+    public ProtocolException() {
+        super("An error occured while executing http protocol.");
+        this.status = Protocol.NOT_SUPPORTED_CODE;
+    }
 
-	/**
-	 * Creates exception object with supplied exception message.
-	 * 
-	 * @param status The status code for the exception.
-	 * @param message The message for the exception.
-	 */
-	public ProtocolException(int status, String message) {
-		super(message);
-		this.status = status;
-	}
+    /**
+     * Creates exception object with supplied exception message.
+     *
+     * @param message The message for the exception.
+     */
+    public ProtocolException(String message) {
+        super(message);
+        this.status = Protocol.NOT_SUPPORTED_CODE;
+    }
 
-	/**
-	 * Creates exception object generated due to another exception.
-	 * 
-	 * @param cause The cause object for this exception to occur.
-	 */
-	public ProtocolException(Throwable cause) {
-		super(cause);
-		status = Protocol.NOT_SUPPORTED_CODE;
-	}
+    /**
+     * Creates exception object with supplied exception message.
+     *
+     * @param status  The status code for the exception.
+     * @param message The message for the exception.
+     */
+    public ProtocolException(int status, String message) {
+        super(message);
+        this.status = status;
+    }
 
-	/**
-	 * Creates exception object with supplied message and cause.
-	 * 
-	 * @param message The message.
-	 * @param cause The cause exception object.
-	 */
-	public ProtocolException(String message, Throwable cause) {
-		super(message, cause);
-		status = Protocol.NOT_SUPPORTED_CODE;
-	}
-	
-	public int getStatus() {
-		return status;
-	}
+    /**
+     * Creates exception object generated due to another exception.
+     *
+     * @param cause The cause object for this exception to occur.
+     */
+    public ProtocolException(Throwable cause) {
+        super(cause);
+        status = Protocol.NOT_SUPPORTED_CODE;
+    }
+
+    /**
+     * Creates exception object with supplied message and cause.
+     *
+     * @param message The message.
+     * @param cause   The cause exception object.
+     */
+    public ProtocolException(String message, Throwable cause) {
+        super(message, cause);
+        status = Protocol.NOT_SUPPORTED_CODE;
+    }
+
+    public int getStatus() {
+        return status;
+    }
 }

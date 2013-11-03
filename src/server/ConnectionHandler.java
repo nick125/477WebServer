@@ -125,7 +125,7 @@ public class ConnectionHandler implements Runnable {
                 response = HttpResponse.create505NotSupported(Protocol.CLOSE);
             } else if (request.getMethod().equalsIgnoreCase(Protocol.GET) || request.getMethod().equalsIgnoreCase(Protocol.HEAD)) {
                 System.out.println("received a GET or HEAD request");
-//				Map<String, String> header = request.getHeader();
+//				Map<String, String> header = request.getHeaders();
 //				String date = header.get("if-modified-since");
 //				String hostName = header.get("host");
 
@@ -152,7 +152,7 @@ public class ConnectionHandler implements Runnable {
                 System.out.println("received a POST or PUT request");
                 File file = new File(server.getRootDirectory() + request.getUri());
                 if (file.exists() && !file.isDirectory()) {
-                    // parse body for post/put data
+                    // parse body for post/addHeader data
                     Map<String, String> values = getPutPostParameters(request.getBody(), request.getMethod().equalsIgnoreCase(Protocol.PUT));
                     // TODO do something with this map once there is an application
                     if (values.isEmpty())

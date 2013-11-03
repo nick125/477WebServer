@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5487eb8-b261-4e65-80dd-ad890e65a05c" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Nicholas\SkyDrive\Documents\Classes\CSSE477\477WebServer\src\protocol\HttpResponseFactory.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/ConnectionHandler.java" afterPath="$PROJECT_DIR$/src/server/ConnectionHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protocol/HttpRequest.java" afterPath="$PROJECT_DIR$/src/protocol/HttpRequest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protocol/HttpResponse.java" afterPath="$PROJECT_DIR$/src/protocol/HttpResponse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protocol/Protocol.java" afterPath="$PROJECT_DIR$/src/protocol/Protocol.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protocol/ProtocolException.java" afterPath="$PROJECT_DIR$/src/protocol/ProtocolException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/SpringUtilities.java" afterPath="$PROJECT_DIR$/src/gui/SpringUtilities.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/WebServer.java" afterPath="$PROJECT_DIR$/src/gui/WebServer.java" />
     </list>
     <ignored path="477WebServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -11,6 +16,7 @@
     <file path="/fragment.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383496783503" ignored="false" />
     <file path="/HttpResponseFactory.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383497011125" ignored="false" />
     <file path="/Protocol.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383497036382" ignored="false" />
+    <file path="/HttpResponse.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383497897872" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,34 +80,52 @@
       <file leaf-file-name="HttpRequest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/protocol/HttpRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="40" selection-start="2414" selection-end="2414" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="95" column="40" selection-start="2605" selection-end="2605" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpResponse.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="HttpResponse.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/protocol/HttpResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="264" column="5" selection-start="9022" selection-end="9022" vertical-scroll-proportion="0.0">
+            <state line="114" column="40" selection-start="3124" selection-end="3124" vertical-scroll-proportion="0.36363637">
               <folding>
-                <element signature="e#0#9826#0" expanded="true" />
+                <element signature="e#0#11372#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConnectionHandler.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ConnectionHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/ConnectionHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="39" selection-start="489" selection-end="489" vertical-scroll-proportion="-0.24113475">
+            <state line="13" column="39" selection-start="489" selection-end="489" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8421#8437#0" expanded="true" />
+                <element signature="e#8428#8444#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpringUtilities.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/SpringUtilities.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="13" selection-start="1878" selection-end="1878" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebServer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/WebServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="244" column="32" selection-start="9442" selection-end="9442" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -109,7 +133,7 @@
       <file leaf-file-name="Protocol.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/protocol/Protocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="0" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.0">
+            <state line="53" column="0" selection-start="1914" selection-end="1914" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -118,7 +142,7 @@
       <file leaf-file-name="ProtocolException.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/protocol/ProtocolException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="13" selection-start="985" selection-end="985" vertical-scroll-proportion="0.0">
+            <state line="29" column="13" selection-start="983" selection-end="983" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -145,8 +169,8 @@
         <option value="$PROJECT_DIR$/src/protocol/HttpRequest.java" />
         <option value="$PROJECT_DIR$/src/protocol/HttpResponseFactory.java" />
         <option value="$PROJECT_DIR$/src/protocol/Protocol.java" />
-        <option value="$PROJECT_DIR$/src/protocol/HttpResponse.java" />
         <option value="$PROJECT_DIR$/src/server/ConnectionHandler.java" />
+        <option value="$PROJECT_DIR$/src/protocol/HttpResponse.java" />
       </list>
     </option>
   </component>
@@ -539,45 +563,59 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/protocol/ProtocolException.java">
+    <entry file="file://$PROJECT_DIR$/src/server/ConnectionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="13" selection-start="985" selection-end="985" vertical-scroll-proportion="0.0">
+        <state line="13" column="39" selection-start="489" selection-end="489" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8428#8444#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/SpringUtilities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="13" selection-start="1878" selection-end="1878" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/WebServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="244" column="32" selection-start="9442" selection-end="9442" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/protocol/Protocol.java">
+    <entry file="file://$PROJECT_DIR$/src/protocol/ProtocolException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.0">
+        <state line="29" column="13" selection-start="983" selection-end="983" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/protocol/HttpRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="40" selection-start="2414" selection-end="2414" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="95" column="40" selection-start="2605" selection-end="2605" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/protocol/Protocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="0" selection-start="1914" selection-end="1914" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/protocol/HttpResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="264" column="5" selection-start="9022" selection-end="9022" vertical-scroll-proportion="0.0">
+        <state line="114" column="40" selection-start="3124" selection-end="3124" vertical-scroll-proportion="0.36363637">
           <folding>
-            <element signature="e#0#9826#0" expanded="true" />
+            <element signature="e#0#11372#0" expanded="true" />
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/ConnectionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="39" selection-start="489" selection-end="489" vertical-scroll-proportion="-0.24113475">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8421#8437#0" expanded="true" />
           </folding>
         </state>
       </provider>

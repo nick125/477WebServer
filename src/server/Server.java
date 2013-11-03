@@ -21,12 +21,14 @@
 
 package server;
 
-import plugins.IRequestHandler;
+import plugin.PluginLoader;
+import pluginAPI.IRequestHandler;
 
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This represents a welcoming server for the incoming
@@ -39,7 +41,7 @@ public class Server implements Runnable {
     private boolean stop;
     private ServerSocket socket;
 
-    private ArrayList<IRequestHandler> requestHandlers;
+    private List<IRequestHandler> requestHandlers;
 
     private long connections;
     private long serviceTime;
@@ -65,7 +67,7 @@ public class Server implements Runnable {
         return port;
     }
 
-    public ArrayList<IRequestHandler> getRequestHandlers()
+    public List<IRequestHandler> getRequestHandlers()
     {
         return this.requestHandlers;
     }
@@ -78,7 +80,7 @@ public class Server implements Runnable {
      */
     public synchronized double getServiceRate() {
         if (this.serviceTime == 0) {
-            return Long.MIN_VALUE;
+            return 0;
         }
 
         double rate = this.connections / (double) this.serviceTime;
@@ -129,7 +131,14 @@ public class Server implements Runnable {
             this.socket.close();
         } catch (Exception e) {
             e.printStackTrace();
+
+            this.stop = true;
         }
+    }
+
+    public boolean isRunning()
+    {
+        return (!this.stop && (this.socket == null || !this.socket.isClosed()));
     }
 
     /**
@@ -148,6 +157,43 @@ public class Server implements Runnable {
             // We do not have any other job for this socket so just close it
             socket.close();
         } catch (Exception e) {
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException
+    {
+        int port = 8000;
+
+        if (args.length > 0)
+            port = Integer.parseInt(args[0]);
+
+        // Setup the plugin loader
+        PluginLoader<IRequestHandler> pluginLoader = new PluginLoader<IRequestHandler>();
+
+        // Start the listen loop
+        final Server server = new Server(port);
+        Thread serverThread = new Thread(server);
+        serverThread.start();
+
+        // Setup a ctrl-c handler
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run()
+            {
+                server.stop();
+            }
+        });
+
+        // Now, we can loop until ctrl-c
+        while (server.isRunning())
+        {
+            // Check for new plugins
+            server.requestHandlers = pluginLoader.getPlugins(IRequestHandler.class);
+
+            // Print statistics
+            System.out.println(String.format("Service Rate: %.2f", server.getServiceRate()));
+
+            // Sleep for a little bit
+            Thread.sleep(5000);
         }
     }
 }

@@ -1,4 +1,4 @@
-package plugins;
+package pluginAPI;
 
 /**
  * All plugins must implement an instance of IPlugin.

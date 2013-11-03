@@ -1,4 +1,4 @@
-package plugins;
+package pluginAPI;
 
 import protocol.HttpRequest;
 import protocol.HttpResponse;

@@ -21,7 +21,7 @@
 
 package server;
 
-import plugins.IRequestHandler;
+import pluginAPI.IRequestHandler;
 import protocol.HttpRequest;
 import protocol.HttpResponse;
 import protocol.Protocol;
@@ -31,6 +31,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is responsible for handling a incoming request
@@ -160,7 +161,7 @@ public class ConnectionHandler implements Runnable {
             }
 
             // Now, try to find a IRequestHandler that will handle this
-            ArrayList<IRequestHandler> requestHandlers = this.server.getRequestHandlers();
+            List<IRequestHandler> requestHandlers = this.server.getRequestHandlers();
             for (int handlerIdx = 0; handlerIdx < requestHandlers.size(); handlerIdx++)
             {
                 IRequestHandler handler = requestHandlers.get(handlerIdx);

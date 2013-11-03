@@ -58,7 +58,6 @@ public class ConnectionHandler implements Runnable {
         return socket;
     }
 
-
     /**
      * The entry point for connection handler. It first parses
      * incoming request and creates a {@link HttpRequest} object,
@@ -191,7 +190,6 @@ public class ConnectionHandler implements Runnable {
         long end = System.currentTimeMillis();
         this.server.incrementServiceTime(end - start);
     }
-
 
     /**
      * @param body

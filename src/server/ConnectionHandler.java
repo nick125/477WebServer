@@ -162,6 +162,7 @@ public class ConnectionHandler implements Runnable {
 
     private void incrementCounter(long start) {
         server.incrementConnections(1);
+
         // Get the end time
         long end = System.currentTimeMillis();
         this.server.incrementServiceTime(end - start);

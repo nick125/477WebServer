@@ -29,6 +29,7 @@ import protocol.ProtocolException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -191,10 +192,18 @@ public class ConnectionHandler implements Runnable {
 
         while (tokenizer.hasMoreElements()) {
             String pair = tokenizer.nextToken();
+
+            // See if we can split the URL into key/value
             int index = pair.indexOf('=');
-            if (index == -1) continue;
+            if (index == -1) {
+                // Just have the key...
+                map.put(pair, "");
+                continue;
+            }
+
+            // Split the key and value
             String key = pair.substring(0, index);
-            String value = pair.substring(index + 1);
+            String value = URLDecoder.decode(pair.substring(index + 1));
             map.put(key, value);
         }
         return map;

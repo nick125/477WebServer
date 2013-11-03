@@ -34,7 +34,7 @@ import java.net.Socket;
 public class Server implements Runnable {
     private int port;
     private boolean stop;
-    private ServerSocket welcomeSocket;
+    private ServerSocket socket;
 
     private long connections;
     private long serviceTime;
@@ -101,23 +101,20 @@ public class Server implements Runnable {
      */
     public void run() {
         try {
-            this.welcomeSocket = new ServerSocket(port);
+            this.socket = new ServerSocket(port);
 
             // Now keep welcoming new connections until stop flag is set to true
-            while (true) {
+            while (!this.stop) {
                 // Listen for incoming socket connection
                 // This method block until somebody makes a request
-                Socket connectionSocket = this.welcomeSocket.accept();
-
-                // Come out of the loop if the stop flag is set
-                if (this.stop)
-                    break;
+                Socket connectionSocket = this.socket.accept();
 
                 // Create a handler for this incoming connection and start the handler in a new thread
                 ConnectionHandler handler = new ConnectionHandler(this, connectionSocket);
                 new Thread(handler).start();
             }
-            this.welcomeSocket.close();
+
+            this.socket.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -132,7 +129,7 @@ public class Server implements Runnable {
 
         this.stop = true;
         try {
-            // This will force welcomeSocket to come out of the blocked accept() method
+            // This will force socket to come out of the blocked accept() method
             // in the main loop of the start() method
             Socket socket = new Socket(InetAddress.getLocalHost(), port);
 
@@ -140,14 +137,5 @@ public class Server implements Runnable {
             socket.close();
         } catch (Exception e) {
         }
-    }
-
-    /**
-     * Checks if the server is stopped or not.
-     *
-     * @return
-     */
-    public boolean isStopped() {
-        return this.welcomeSocket != null ? this.welcomeSocket.isClosed() : true;
     }
 }

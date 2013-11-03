@@ -25,6 +25,7 @@ package protocol;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLDecoder;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,8 +43,10 @@ public class HttpRequest {
     private Map<String, String> header;
     private String body;
 
+    private Map<String, String> queryParameters;
+
     private HttpRequest() {
-        this.header = new HashMap<String, String>();
+        this.header = new CaseInsensitiveMap();
         body = "";
     }
 
@@ -79,8 +82,13 @@ public class HttpRequest {
      *
      * @return the header
      */
-    public Map<String, String> getHeader() {
+    public Map<String, String> getHeaders() {
         return Collections.unmodifiableMap(header);
+    }
+
+    public String getHeader(String key)
+    {
+        return header.get(key);
     }
 
     /**
@@ -118,6 +126,7 @@ public class HttpRequest {
         } catch (IllegalArgumentException e) {
             throw new ProtocolException(Protocol.NOT_IMPLEMENTED_CODE, Protocol.NOT_IMPLEMENTED_TEXT);
         }
+
         request.uri = tokenizer.nextToken();
         request.version = tokenizer.nextToken();
 
@@ -140,7 +149,64 @@ public class HttpRequest {
         while (reader.ready()) {
             request.body += (char) reader.read();
         }
+
+        GetParameters(request);
+
         return request;
+    }
+
+    private static void GetParameters(HttpRequest request) {
+        // We should have the method, so check if this is a GET request
+        if (request.getMethod() == HttpMethod.GET || request.getMethod() == HttpMethod.HEAD)
+        {
+            // Check if we have any query parameters
+            if (!request.getUri().contains("?"))
+                return;
+
+            request.uri = request.uri.split("(.*)\\?(.*)?")[0];
+            request.queryParameters = parseFormEncodedString(request.uri.split("(.*)\\?(.*)?")[1]);
+        }
+        else
+        {
+            // Check if the content-type of the body is application/x-www-form-urlencoded
+            if (!request.getHeader("Content-Type").equalsIgnoreCase("application/x-www-form-urlencoded"))
+                return;
+
+            request.queryParameters = parseFormEncodedString(request.body);
+        }
+    }
+
+    /**
+     * @param body
+     * @return
+     */
+    private static Map<String, String> parseFormEncodedString(String body) {
+        int idx = body.indexOf('?');
+        if (idx >= 0)
+        {
+            body = body.substring(idx + 1);
+        }
+
+        StringTokenizer tokenizer = new StringTokenizer(body, "&");
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        while (tokenizer.hasMoreElements()) {
+            String pair = tokenizer.nextToken();
+
+            // See if we can split the URL into key/value
+            int index = pair.indexOf('=');
+            if (index == -1) {
+                // Just have the key...
+                map.put(pair, "");
+                continue;
+            }
+
+            // Split the key and value
+            String key = pair.substring(0, index);
+            String value = URLDecoder.decode(pair.substring(index + 1));
+            map.put(key, value);
+        }
+        return map;
     }
 
 

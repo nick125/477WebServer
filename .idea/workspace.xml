@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5487eb8-b261-4e65-80dd-ad890e65a05c" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Nicholas\SkyDrive\Documents\Classes\CSSE477\477WebServer\src\server\GMTConversion.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/protocol/HttpResponseType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/ConnectionHandler.java" afterPath="$PROJECT_DIR$/src/server/ConnectionHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protocol/HttpResponse.java" afterPath="$PROJECT_DIR$/src/protocol/HttpResponse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="477WebServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -11,12 +13,12 @@
     <file path="/fragment.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383496783503" ignored="false" />
     <file path="/HttpResponseFactory.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383497011125" ignored="false" />
     <file path="/Protocol.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383500112968" ignored="false" />
-    <file path="/HttpResponse.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383500092122" ignored="false" />
+    <file path="/HttpResponse.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383509484437" ignored="false" />
     <file path="/Server.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383506194093" ignored="false" />
     <file path="/HttpMethod.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383498770160" ignored="false" />
-    <file path="/ConnectionHandler.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383503365911" ignored="false" />
+    <file path="/ConnectionHandler.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383509580295" ignored="false" />
     <file path="/HttpRequest.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383499265216" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383507405102" ignored="false" />
+    <file path="/HttpResponseType.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383508320799" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,32 +94,41 @@
       <file leaf-file-name="HttpResponse.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/protocol/HttpResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="296" column="81" selection-start="10569" selection-end="10569" vertical-scroll-proportion="-10.0">
+            <state line="87" column="6" selection-start="2580" selection-end="2580" vertical-scroll-proportion="16.84">
               <folding>
-                <element signature="e#0#11679#0" expanded="true" />
+                <element signature="e#0#10821#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConnectionHandler.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ConnectionHandler.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/ConnectionHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="164" column="0" selection-start="5458" selection-end="5458" vertical-scroll-proportion="0.0">
+            <state line="131" column="0" selection-start="4568" selection-end="4568" vertical-scroll-proportion="0.52224827">
               <folding>
-                <element signature="e#0#6327#0" expanded="true" />
+                <element signature="e#0#6659#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#5953#5969#0" expanded="true" />
+                <element signature="e#6285#6301#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpMethod.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="HttpMethod.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/protocol/HttpMethod.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="134" selection-end="134" vertical-scroll-proportion="0.33156028">
+            <state line="12" column="0" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpResponseType.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/protocol/HttpResponseType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="32" selection-start="1168" selection-end="1168" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -173,11 +184,12 @@
         <option value="$PROJECT_DIR$/src/protocol/HttpResponseFactory.java" />
         <option value="$PROJECT_DIR$/src/protocol/HttpMethod.java" />
         <option value="$PROJECT_DIR$/src/protocol/HttpRequest.java" />
-        <option value="$PROJECT_DIR$/src/protocol/HttpResponse.java" />
         <option value="$PROJECT_DIR$/src/protocol/Protocol.java" />
         <option value="$PROJECT_DIR$/src/server/Server.java" />
-        <option value="$PROJECT_DIR$/src/server/ConnectionHandler.java" />
         <option value="$PROJECT_DIR$/src/server/GMTConversion.java" />
+        <option value="$PROJECT_DIR$/src/protocol/HttpResponseType.java" />
+        <option value="$PROJECT_DIR$/src/protocol/HttpResponse.java" />
+        <option value="$PROJECT_DIR$/src/server/ConnectionHandler.java" />
       </list>
     </option>
   </component>
@@ -208,7 +220,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -440,7 +452,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -540,16 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/protocol/HttpResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="296" column="81" selection-start="10569" selection-end="10569" vertical-scroll-proportion="-10.0">
-          <folding>
-            <element signature="e#0#11679#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/protocol/Protocol.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="66" column="75" selection-start="2525" selection-end="2525" vertical-scroll-proportion="0.0">
@@ -564,17 +566,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/ConnectionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="164" column="0" selection-start="5458" selection-end="5458" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#6327#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#5953#5969#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="122" column="0" selection-start="3597" selection-end="3597" vertical-scroll-proportion="0.0">
@@ -586,8 +577,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/protocol/HttpMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="134" selection-end="134" vertical-scroll-proportion="0.33156028">
+        <state line="12" column="0" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/protocol/HttpResponseType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="32" selection-start="1168" selection-end="1168" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/protocol/HttpResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="6" selection-start="2580" selection-end="2580" vertical-scroll-proportion="16.84">
+          <folding>
+            <element signature="e#0#10821#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/ConnectionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="131" column="0" selection-start="4568" selection-end="4568" vertical-scroll-proportion="0.52224827">
+          <folding>
+            <element signature="e#0#6659#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#6285#6301#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -121,6 +121,13 @@ public class ConnectionHandler implements Runnable {
 
             switch (request.getMethod()) {
                 case GET:
+                    // Parse the query parameters
+                    Map<String, String> queryParams;
+                    int queryIdx = request.getUri().indexOf('?');
+                    if (queryIdx > 0) {
+                        queryParams = getQueryParameters(request.getUri().substring(queryIdx + 1));
+                    }
+
                     // TODO: Do something
                     break;
                 case POST:

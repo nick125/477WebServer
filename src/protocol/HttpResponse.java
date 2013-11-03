@@ -32,38 +32,41 @@ import java.util.*;
  * @author Chandan R. Rupakheti (rupakhet@rose-hulman.edu)
  */
 public class HttpResponse {
+    private HttpResponseType type;
     private String version;
-    private int status;
-    private String statusText;
-    private Map<String, String> header;
-    private File file;
+    private Map<String, String> headers;
 
+    private File file;
+    private byte[] body;
+
+    private static final String DEFAULT_VERSION = Protocol.VERSION;
+
+    public HttpResponse(HttpResponseType type) {
+        this(DEFAULT_VERSION, type);
+    }
 
     /**
      * Constructs a HttpResponse object using the supplied parameters, no headers, and no file
      *
      * @param version The HTTP Version (e.g., 1.0 or 1.1)
-     * @param status  The integer response type (e.g., 200)
-     * @param phrase  The text response type (e.g., "OK")
+     * @param type  The response type (e.g., HttpResponseType.OK)
      */
-    public HttpResponse(String version, int status, String phrase) {
-        this(version, status, phrase, new HashMap<String, String>(), null);
+    public HttpResponse(String version, HttpResponseType type) {
+        this(version, type, new HashMap<String, String>(), null);
     }
 
     /**
-     * Constructs a HttpResponse object using supplied parameter
+     * Constructs a HttpResponse object using the supplied parameters, no headers, and no file
      *
-     * @param version The http version.
-     * @param status  The response status.
-     * @param phrase  The response status statusText.
-     * @param header  The header field map.
+     * @param version The HTTP Version (e.g., 1.0 or 1.1)
+     * @param type  The response type (e.g., HttpResponseType.OK)
+     * @param headers  The headers field map.
      * @param file    The file to be sent.
      */
-    public HttpResponse(String version, int status, String phrase, Map<String, String> header, File file) {
+    public HttpResponse(String version, HttpResponseType type, Map<String, String> headers, File file) {
         this.version = version;
-        this.status = status;
-        this.statusText = phrase;
-        this.header = header;
+        this.type = type;
+        this.headers = headers;
         this.file = file;
     }
 
@@ -76,22 +79,8 @@ public class HttpResponse {
         return version;
     }
 
-    /**
-     * Gets the status code of the response object.
-     *
-     * @return the status
-     */
-    public int getStatus() {
-        return status;
-    }
-
-    /**
-     * Gets the status statusText of the response object.
-     *
-     * @return the statusText
-     */
-    public String getStatusText() {
-        return statusText;
+    public HttpResponseType getType() {
+        return type;
     }
 
     /**
@@ -104,26 +93,26 @@ public class HttpResponse {
     }
 
     /**
-     * Returns the header fields associated with the response object.
+     * Returns the headers fields associated with the response object.
      *
-     * @return the header
+     * @return the headers
      */
     public Map<String, String> getHeaders() {
-        return Collections.unmodifiableMap(header);
+        return Collections.unmodifiableMap(headers);
     }
 
     public String getHeader(String key) {
-        return header.get(key);
+        return headers.get(key);
     }
 
     /**
-     * Maps a key to value in the header map.
+     * Maps a key to value in the headers map.
      *
      * @param key   A key, e.g. "Host"
      * @param value A value, e.g. "www.rose-hulman.edu"
      */
     public void addHeader(String key, String value) {
-        this.header.put(key, value);
+        this.headers.put(key, value);
     }
 
     /**
@@ -136,24 +125,23 @@ public class HttpResponse {
         BufferedOutputStream out = new BufferedOutputStream(outStream, Protocol.CHUNK_LENGTH);
 
         // First status line
-        String line = this.version + Protocol.SPACE + this.status + Protocol.SPACE + this.statusText + Protocol.CRLF;
+        String line = String.format("%s %s%s", this.version, this.type.getFullType(), Protocol.CRLF);
         out.write(line.getBytes());
 
-        // Write header fields if there is something to write in header field
-        if (header != null && !header.isEmpty()) {
-            for (Map.Entry<String, String> entry : header.entrySet()) {
+        // Write headers fields if there is something to write in headers field
+        if (headers != null && !headers.isEmpty()) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
 
-                // Write each header field line
-                line = key + Protocol.SEPERATOR + Protocol.SPACE + value + Protocol.CRLF;
-                out.write(line.getBytes());
+                // Write each headers field line
+                out.write(String.format("%s: %s%s", key, value, Protocol.CRLF).getBytes());
             }
         }
         out.write(Protocol.CRLF.getBytes());
 
         // We are reading a file
-        if (this.getStatus() == Protocol.OK_CODE && file != null) {
+        if (file != null) {
             FileInputStream fileInStream = new FileInputStream(file);
             BufferedInputStream inStream = new BufferedInputStream(fileInStream, Protocol.CHUNK_LENGTH);
 
@@ -164,14 +152,17 @@ public class HttpResponse {
                 out.write(buffer, 0, bytesRead);
             }
             inStream.close();
+        } else if (body.length > 0) {
+            out.write(body, 0, body.length);
         }
+
         out.flush();
     }
 
     /**
-     * Convenience method for adding general header to the supplied response object.
+     * Convenience method for adding general headers to the supplied response object.
      *
-     * @param response   The {@link HttpResponse} object whose header needs to be filled in.
+     * @param response   The {@link HttpResponse} object whose headers needs to be filled in.
      * @param connection Supported values are {@link Protocol#OPEN} and {@link Protocol#CLOSE}.
      */
     private static void fillGeneralHeader(HttpResponse response, String connection) {
@@ -182,25 +173,19 @@ public class HttpResponse {
         response.addHeader(Protocol.PROVIDER, Protocol.AUTHOR);
     }
 
-    /**
-     * Creates a {@link HttpResponse} object for sending the supplied file with supplied connection
-     * parameter.
-     *
-     * @param file       The {@link File} to be sent.
-     * @param connection Supported values are {@link Protocol#OPEN} and {@link Protocol#CLOSE}.
-     * @return A {@link HttpResponse} object represent 200 status.
-     */
-    public static HttpResponse create200OK(File file, String connection, boolean get) {
-        HttpResponse response = new HttpResponse(Protocol.VERSION, Protocol.OK_CODE,
-                Protocol.OK_TEXT, new HashMap<String, String>(), get ? file : null);
-
+    public static HttpResponse createResponse(HttpResponseType type, String connection, File file)
+    {
+        HttpResponse response = new HttpResponse(DEFAULT_VERSION, type);
         fillGeneralHeader(response, connection);
+
+        response.file = file;
+
         long timeSinceEpoch = file.lastModified();
         Date modifiedTime = new Date(timeSinceEpoch);
         response.addHeader(Protocol.LAST_MODIFIED, modifiedTime.toString());
 
         long length = file.length();
-        response.addHeader(Protocol.CONTENT_LENGTH, length + "");
+        response.addHeader(Protocol.CONTENT_LENGTH, String.format("%d", length));
 
         // Lets get MIME type for the file
         FileNameMap fileNameMap = URLConnection.getFileNameMap();
@@ -215,6 +200,36 @@ public class HttpResponse {
         return response;
     }
 
+    public static HttpResponse createResponse(HttpResponseType type, String connection, String body)
+    {
+        HttpResponse response = new HttpResponse(DEFAULT_VERSION, type);
+        fillGeneralHeader(response, connection);
+        response.body = body.getBytes();
+
+        response.addHeader(Protocol.CONTENT_LENGTH, String.format("%d", response.body.length));
+
+        return response;
+    }
+
+    public static HttpResponse createResponse(HttpResponseType type, String connection)
+    {
+        HttpResponse response = new HttpResponse(DEFAULT_VERSION, type);
+        fillGeneralHeader(response, connection);
+        return response;
+    }
+
+    /**
+     * Creates a {@link HttpResponse} object for sending the supplied file with supplied connection
+     * parameter.
+     *
+     * @param file       The {@link File} to be sent.
+     * @param connection Supported values are {@link Protocol#OPEN} and {@link Protocol#CLOSE}.
+     * @return A {@link HttpResponse} object represent 200 status.
+     */
+    public static HttpResponse create200OK(File file, String connection) {
+        return createResponse(HttpResponseType.OK, connection, file);
+    }
+
     /**
      * Creates a {@link HttpResponse} object for sending bad request response.
      *
@@ -222,10 +237,7 @@ public class HttpResponse {
      * @return A {@link HttpResponse} object represent 400 status.
      */
     public static HttpResponse create400BadRequest(String connection) {
-        HttpResponse response = new HttpResponse(Protocol.VERSION, Protocol.BAD_REQUEST_CODE,
-                Protocol.BAD_REQUEST_TEXT);
-        fillGeneralHeader(response, connection);
-        return response;
+        return createResponse(HttpResponseType.BadRequest, connection);
     }
 
     /**
@@ -235,10 +247,7 @@ public class HttpResponse {
      * @return A {@link HttpResponse} object represent 404 status.
      */
     public static HttpResponse create404NotFound(String connection) {
-        HttpResponse response = new HttpResponse(Protocol.VERSION, Protocol.NOT_FOUND_CODE,
-                Protocol.NOT_FOUND_TEXT);
-        fillGeneralHeader(response, connection);
-        return response;
+        return createResponse(HttpResponseType.NotFound, connection);
     }
 
     /**
@@ -248,10 +257,8 @@ public class HttpResponse {
      * @return A {@link HttpResponse} object represent 505 status.
      */
     public static HttpResponse create505NotSupported(String connection) {
-        HttpResponse response = new HttpResponse(Protocol.VERSION, Protocol.NOT_SUPPORTED_CODE,
-                Protocol.NOT_SUPPORTED_TEXT);
-        fillGeneralHeader(response, connection);
-        return response;
+        return createResponse(HttpResponseType.NotSupported, connection);
+
     }
 
     /**
@@ -261,10 +268,7 @@ public class HttpResponse {
      * @return A {@link HttpResponse} object represent 304 status.
      */
     public static HttpResponse create304NotModified(String connection) {
-        HttpResponse response = new HttpResponse(Protocol.VERSION, Protocol.NOT_MODIFIED_CODE,
-                Protocol.NOT_MODIFIED_TEXT);
-        fillGeneralHeader(response, connection);
-        return response;
+        return createResponse(HttpResponseType.NotModified, connection);
     }
 
     /**
@@ -274,10 +278,7 @@ public class HttpResponse {
      * @return A {@link HttpResponse} for a 301 Moved Permanently response
      */
     public static HttpResponse create301MovedPermanently(String connection) {
-        HttpResponse response = new HttpResponse(Protocol.VERSION, Protocol.MOVED_PERMANENTLY_CODE,
-                Protocol.MOVED_PERMANENTLY_TEXT);
-        fillGeneralHeader(response, connection);
-        return response;
+        return createResponse(HttpResponseType.MovedPermanently, connection);
     }
 
     /**
@@ -287,44 +288,29 @@ public class HttpResponse {
      * @return A {@link HttpResponse} for a 201 Created response
      */
     public static HttpResponse create201Created(String connection) {
-        HttpResponse response = new HttpResponse(Protocol.VERSION, Protocol.CREATED_CODE,
-                Protocol.CREATED_TEXT);
-        fillGeneralHeader(response, connection);
-        return response;
+        return createResponse(HttpResponseType.Created, connection);
     }
 
     public static HttpResponse create500InternalServerError(String connection) {
-        HttpResponse response = new HttpResponse(Protocol.VERSION, Protocol.INTERNAL_ERROR_CODE,
-                Protocol.INTERNAL_ERROR_TEXT);
-        fillGeneralHeader(response, connection);
-        return response;
+        return createResponse(HttpResponseType.InternalServerError, connection);
     }
 
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();
+        OutputStream outBuffer = new ByteArrayOutputStream();
         buffer.append("----------------------------------\n");
-        buffer.append(this.version);
-        buffer.append(Protocol.SPACE);
-        buffer.append(this.status);
-        buffer.append(Protocol.SPACE);
-        buffer.append(this.statusText);
-        buffer.append(Protocol.LF);
 
-        for (Map.Entry<String, String> entry : this.header.entrySet()) {
-            buffer.append(entry.getKey());
-            buffer.append(Protocol.SEPERATOR);
-            buffer.append(Protocol.SPACE);
-            buffer.append(entry.getValue());
-            buffer.append(Protocol.LF);
+        try {
+            write(outBuffer);
+            buffer.append(outBuffer.toString());
+        }
+        catch (Exception e)
+        {
+            buffer.append("Got error building request:");
+            e.printStackTrace();
         }
 
-        buffer.append(Protocol.LF);
-        if (file != null) {
-            buffer.append("Data: ");
-            buffer.append(this.file.getAbsolutePath());
-        }
-        buffer.append("\n----------------------------------\n");
         return buffer.toString();
     }
 

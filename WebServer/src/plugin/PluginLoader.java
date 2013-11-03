@@ -53,7 +53,11 @@ public class PluginLoader<T> {
         PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:.\\plugins\\*.jar");
 
         File filePath = new File(".\\plugins");
-        for (File file : filePath.listFiles()) {
+        File[] filePaths = filePath.listFiles();
+
+        if (filePaths == null) return allClassesFound;
+
+        for (File file : filePaths) {
             if (!matcher.matches(file.toPath()))
                 continue;
 

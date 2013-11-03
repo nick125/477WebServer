@@ -67,8 +67,7 @@ public class Server implements Runnable {
         return port;
     }
 
-    public List<IRequestHandler> getRequestHandlers()
-    {
+    public List<IRequestHandler> getRequestHandlers() {
         return this.requestHandlers;
     }
 
@@ -136,8 +135,7 @@ public class Server implements Runnable {
         }
     }
 
-    public boolean isRunning()
-    {
+    public boolean isRunning() {
         return (!this.stop && (this.socket == null || !this.socket.isClosed()));
     }
 
@@ -157,11 +155,12 @@ public class Server implements Runnable {
             // We do not have any other job for this socket so just close it
             socket.close();
         } catch (Exception e) {
+            System.out.println("Error while trying to stop server");
+            e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) throws InterruptedException
-    {
+    public static void main(String[] args) throws InterruptedException {
         int port = 8000;
 
         if (args.length > 0)
@@ -177,15 +176,13 @@ public class Server implements Runnable {
 
         // Setup a ctrl-c handler
         Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run()
-            {
+            public void run() {
                 server.stop();
             }
         });
 
         // Now, we can loop until ctrl-c
-        while (server.isRunning())
-        {
+        while (server.isRunning()) {
             // Check for new plugins
             server.requestHandlers = pluginLoader.getPlugins(IRequestHandler.class);
 

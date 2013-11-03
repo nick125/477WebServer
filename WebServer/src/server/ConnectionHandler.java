@@ -30,7 +30,6 @@ import protocol.ProtocolException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,9 +41,9 @@ import java.util.List;
  * @author Chandan R. Rupakheti (rupakhet@rose-hulman.edu)
  */
 public class ConnectionHandler implements Runnable {
-    private Server server;
-    private Socket socket;
-    private IRequestHandler defaultRequestHandler;
+    private final Server server;
+    private final Socket socket;
+    private final IRequestHandler defaultRequestHandler;
 
     public ConnectionHandler(Server server, Socket socket) {
         this.server = server;
@@ -58,7 +57,6 @@ public class ConnectionHandler implements Runnable {
     public Socket getSocket() {
         return socket;
     }
-
 
     /**
      * The entry point for connection handler. It first parses
@@ -85,8 +83,8 @@ public class ConnectionHandler implements Runnable {
         }
 
         // At this point we have the input and output stream of the socket
-        HttpRequest request = null;
-        HttpResponse response = null;
+        HttpRequest request;
+        HttpResponse response;
 
         try {
             request = HttpRequest.read(inStream);
@@ -144,17 +142,14 @@ public class ConnectionHandler implements Runnable {
         writeResponse(start, outStream, response);
     }
 
-    private IRequestHandler getHandlerForURI(String URI)
-    {
+    private IRequestHandler getHandlerForURI(String URI) {
         String[] URISegments = URI.split("/");
 
         // Start at the most specific and go to least specific
-        for (int i = URISegments.length; i > 0; i--)
-        {
+        for (int i = URISegments.length; i > 0; i--) {
             // Create the path segment
             StringBuilder buffer = new StringBuilder();
-            for (int j = 0; i > j; j++)
-            {
+            for (int j = 0; i > j; j++) {
                 // TODO: this probably isn't right.
                 buffer.append("/");
                 buffer.append(URISegments[j]);
@@ -162,9 +157,7 @@ public class ConnectionHandler implements Runnable {
 
             // Now, try to find a IRequestHandler that will handle this
             List<IRequestHandler> requestHandlers = this.server.getRequestHandlers();
-            for (int handlerIdx = 0; handlerIdx < requestHandlers.size(); handlerIdx++)
-            {
-                IRequestHandler handler = requestHandlers.get(handlerIdx);
+            for (IRequestHandler handler : requestHandlers) {
                 if (handler.handlesPath(buffer.toString()))
                     return handler;
             }
@@ -200,8 +193,7 @@ public class ConnectionHandler implements Runnable {
         }
 
         @Override
-        public HttpResponse handleRequest(HttpRequest request)
-        {
+        public HttpResponse handleRequest(HttpRequest request) {
             return HttpResponse.create404NotFound(Protocol.CLOSE);
         }
     }

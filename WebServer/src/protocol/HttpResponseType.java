@@ -30,23 +30,21 @@ public enum HttpResponseType {
 
     private final int code;
     private final String text;
+
     HttpResponseType(int code, String text) {
         this.code = code;
         this.text = text;
     }
 
-    int getCode()
-    {
+    int getCode() {
         return this.code;
     }
 
-    String getText()
-    {
+    String getText() {
         return this.text;
     }
 
-    String getFullType()
-    {
+    String getFullType() {
         return String.format("%d %s", this.code, this.text);
     }
 }

@@ -86,8 +86,7 @@ public class HttpRequest {
         return Collections.unmodifiableMap(header);
     }
 
-    public String getHeader(String key)
-    {
+    public String getHeader(String key) {
         return header.get(key);
     }
 
@@ -157,17 +156,14 @@ public class HttpRequest {
 
     private static void GetParameters(HttpRequest request) {
         // We should have the method, so check if this is a GET request
-        if (request.getMethod() == HttpMethod.GET || request.getMethod() == HttpMethod.HEAD)
-        {
+        if (request.getMethod() == HttpMethod.GET || request.getMethod() == HttpMethod.HEAD) {
             // Check if we have any query parameters
             if (!request.getUri().contains("?"))
                 return;
 
             request.uri = request.uri.split("(.*)\\?(.*)?")[0];
             request.queryParameters = parseFormEncodedString(request.uri.split("(.*)\\?(.*)?")[1]);
-        }
-        else
-        {
+        } else {
             // Check if the content-type of the body is application/x-www-form-urlencoded
             if (!request.getHeader("Content-Type").equalsIgnoreCase("application/x-www-form-urlencoded"))
                 return;
@@ -182,8 +178,7 @@ public class HttpRequest {
      */
     private static Map<String, String> parseFormEncodedString(String body) {
         int idx = body.indexOf('?');
-        if (idx >= 0)
-        {
+        if (idx >= 0) {
             body = body.substring(idx + 1);
         }
 
@@ -212,7 +207,7 @@ public class HttpRequest {
 
     @Override
     public String toString() {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         buffer.append("----------------------------------\n");
         buffer.append(this.method);
         buffer.append(Protocol.SPACE);
@@ -223,7 +218,7 @@ public class HttpRequest {
 
         for (Map.Entry<String, String> entry : this.header.entrySet()) {
             buffer.append(entry.getKey());
-            buffer.append(Protocol.SEPERATOR);
+            buffer.append(Protocol.SEPARATOR);
             buffer.append(Protocol.SPACE);
             buffer.append(entry.getValue());
             buffer.append(Protocol.LF);

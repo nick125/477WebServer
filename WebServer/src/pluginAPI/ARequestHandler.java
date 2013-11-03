@@ -10,18 +10,16 @@ import java.util.ArrayList;
  * Base request handler
  */
 public abstract class ARequestHandler implements IRequestHandler {
-    ArrayList<String> roots = new ArrayList<String>();
+    private ArrayList<String> roots = new ArrayList<String>();
 
     @Override
-    public boolean handlesPath(String path)
-    {
+    public boolean handlesPath(String path) {
         return roots.contains(path);
     }
 
     @Override
     public HttpResponse handleRequest(HttpRequest request) {
-        switch (request.getMethod())
-        {
+        switch (request.getMethod()) {
             case GET:
                 return handleGET(request);
             case POST:

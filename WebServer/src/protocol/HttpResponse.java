@@ -49,7 +49,7 @@ public class HttpResponse {
      * Constructs a HttpResponse object using the supplied parameters, no headers, and no file
      *
      * @param version The HTTP Version (e.g., 1.0 or 1.1)
-     * @param type  The response type (e.g., HttpResponseType.OK)
+     * @param type    The response type (e.g., HttpResponseType.OK)
      */
     public HttpResponse(String version, HttpResponseType type) {
         this(version, type, new HashMap<String, String>(), null);
@@ -59,8 +59,19 @@ public class HttpResponse {
      * Constructs a HttpResponse object using the supplied parameters, no headers, and no file
      *
      * @param version The HTTP Version (e.g., 1.0 or 1.1)
-     * @param type  The response type (e.g., HttpResponseType.OK)
-     * @param headers  The headers field map.
+     * @param type    The response type (e.g., HttpResponseType.OK)
+     * @param file    The file to be sent.
+     */
+    public HttpResponse(String version, HttpResponseType type, File file) {
+        this(version, type, new HashMap<String, String>(), file);
+    }
+
+    /**
+     * Constructs a HttpResponse object using the supplied parameters, no headers, and no file
+     *
+     * @param version The HTTP Version (e.g., 1.0 or 1.1)
+     * @param type    The response type (e.g., HttpResponseType.OK)
+     * @param headers The headers field map.
      * @param file    The file to be sent.
      */
     public HttpResponse(String version, HttpResponseType type, Map<String, String> headers, File file) {
@@ -173,12 +184,9 @@ public class HttpResponse {
         response.addHeader(Protocol.PROVIDER, Protocol.AUTHOR);
     }
 
-    public static HttpResponse createResponse(HttpResponseType type, String connection, File file)
-    {
-        HttpResponse response = new HttpResponse(DEFAULT_VERSION, type);
+    public static HttpResponse createResponse(HttpResponseType type, String connection, File file) {
+        HttpResponse response = new HttpResponse(DEFAULT_VERSION, type, file);
         fillGeneralHeader(response, connection);
-
-        response.file = file;
 
         long timeSinceEpoch = file.lastModified();
         Date modifiedTime = new Date(timeSinceEpoch);
@@ -200,8 +208,7 @@ public class HttpResponse {
         return response;
     }
 
-    public static HttpResponse createResponse(HttpResponseType type, String connection, String body)
-    {
+    public static HttpResponse createResponse(HttpResponseType type, String connection, String body) {
         HttpResponse response = new HttpResponse(DEFAULT_VERSION, type);
         fillGeneralHeader(response, connection);
         response.body = body.getBytes();
@@ -211,8 +218,7 @@ public class HttpResponse {
         return response;
     }
 
-    public static HttpResponse createResponse(HttpResponseType type, String connection)
-    {
+    public static HttpResponse createResponse(HttpResponseType type, String connection) {
         HttpResponse response = new HttpResponse(DEFAULT_VERSION, type);
         fillGeneralHeader(response, connection);
         return response;
@@ -304,9 +310,7 @@ public class HttpResponse {
         try {
             write(outBuffer);
             buffer.append(outBuffer.toString());
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             buffer.append("Got error building request:");
             e.printStackTrace();
         }

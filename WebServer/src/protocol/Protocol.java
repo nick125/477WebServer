@@ -30,7 +30,7 @@ package protocol;
 public class Protocol {
     // Escape characters
     public static final char SPACE = ' ';
-    public static final char SEPERATOR = ':';
+    public static final char SEPARATOR = ':';
     public static final char SLASH = '/';
     public static final char CR = '\r';
     public static final char LF = '\n';
@@ -112,8 +112,6 @@ public class Protocol {
         String os = System.getProperty("os.name"); // e.g. Mac OSX, Ubuntu, etc.
         String osVersion = System.getProperty("os.version"); // e.g. 10.5, 10.0.4, etc
         String architecture = System.getProperty("os.arch"); // e.g. i386, x86_64, etc
-        String serverInfo = Protocol.SERVER_INFO + Protocol.SPACE +
-                "(" + os + Protocol.SLASH + osVersion + Protocol.SLASH + architecture + ")";
-        return serverInfo;
+        return String.format("%s (%s/%s/%s)", Protocol.SERVER_INFO, os, osVersion, architecture);
     }
 }

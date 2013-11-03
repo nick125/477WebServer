@@ -293,6 +293,13 @@ public class HttpResponse {
         return response;
     }
 
+    public static HttpResponse create500InternalServerError(String connection) {
+        HttpResponse response = new HttpResponse(Protocol.VERSION, Protocol.INTERNAL_ERROR_CODE,
+                Protocol.INTERNAL_ERROR_TEXT);
+        fillGeneralHeader(response, connection);
+        return response;
+    }
+
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();
@@ -320,5 +327,6 @@ public class HttpResponse {
         buffer.append("\n----------------------------------\n");
         return buffer.toString();
     }
+
 
 }

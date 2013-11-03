@@ -171,16 +171,22 @@ public class ConnectionHandler implements Runnable {
      * @param body
      * @return
      */
-    private Map<String, String> getPutPostParameters(String body, boolean put) {
+    private Map<String, String> getQueryParameters(String body) {
+        int idx = body.indexOf('?');
+        if (idx >= 0)
+        {
+            body = body.substring(idx + 1);
+        }
+
         StringTokenizer tokenizer = new StringTokenizer(body, "&");
         HashMap<String, String> map = new HashMap<String, String>();
+
         while (tokenizer.hasMoreElements()) {
             String pair = tokenizer.nextToken();
             int index = pair.indexOf('=');
             if (index == -1) continue;
             String key = pair.substring(0, index);
             String value = pair.substring(index + 1);
-            System.out.println(put ? "PUT" : "POST" + " request set: " + key + "=" + value);
             map.put(key, value);
         }
         return map;

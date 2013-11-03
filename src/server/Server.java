@@ -21,8 +21,6 @@
 
 package server;
 
-import gui.WebServer;
-
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -41,17 +39,14 @@ public class Server implements Runnable {
     private long connections;
     private long serviceTime;
 
-    private WebServer window;
-
     /**
      * @param port
      */
-    public Server(int port, WebServer window) {
+    public Server(int port) {
         this.port = port;
         this.stop = false;
         this.connections = 0;
         this.serviceTime = 0;
-        this.window = window;
     }
 
     /**
@@ -124,7 +119,7 @@ public class Server implements Runnable {
             }
             this.welcomeSocket.close();
         } catch (Exception e) {
-            window.showSocketException(e);
+            e.printStackTrace();
         }
     }
 

@@ -63,6 +63,9 @@ public class Protocol {
     public static final int NOT_IMPLEMENTED_CODE = 501;
     public static final String NOT_IMPLEMENTED_TEXT = "Not Implemented";
 
+    public static final int INTERNAL_ERROR_CODE = 500;
+    public static final String INTERNAL_ERROR_TEXT = "Internal Server Error";
+
     public static final int NOT_SUPPORTED_CODE = 505;
     public static final String NOT_SUPPORTED_TEXT = "HTTP Version Not Supported";
 

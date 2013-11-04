@@ -30,7 +30,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.locks.Lock;
 
 /**
  * This represents a welcoming server for the incoming
@@ -126,15 +125,20 @@ public class Server implements Runnable {
     public void run() {
         // Create the thread pool threads
         final Server server = this;
-        for (int threadID = 0; threadID < numberCores; threadID++)
-        {
+        for (int threadID = 0; threadID < numberCores; threadID++) {
             Thread newThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while (isRunning()) {
                         // Check the socket queue
                         Socket queuedSocket = socketQueue.poll();
-                        if (queuedSocket == null) continue;
+                        if (queuedSocket == null) {
+                            try {
+                                Thread.sleep(50);
+                                continue;
+                            } catch (InterruptedException e) {
+                            }
+                        }
 
                         // Start a connection handler
                         ConnectionHandler handler = new ConnectionHandler(server, queuedSocket);

@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Base request handler
  */
 public abstract class ARequestHandler implements IRequestHandler {
-    private ArrayList<String> roots = new ArrayList<String>();
+    protected ArrayList<String> roots = new ArrayList<String>();
 
     @Override
     public boolean handlesPath(String path) {

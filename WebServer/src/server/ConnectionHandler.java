@@ -150,7 +150,8 @@ public class ConnectionHandler implements Runnable {
             // Create the path segment
             StringBuilder buffer = new StringBuilder();
             for (int j = 0; i > j; j++) {
-                // TODO: this probably isn't right.
+                if (URISegments[j].isEmpty()) continue;
+
                 buffer.append("/");
                 buffer.append(URISegments[j]);
             }

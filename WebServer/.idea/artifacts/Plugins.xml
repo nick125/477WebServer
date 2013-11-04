@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Plugins">
+    <output-path>$PROJECT_DIR$/Plugins</output-path>
+    <root id="archive" name="TestPlugin.jar">
+      <element id="module-output" name="TestPlugin" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

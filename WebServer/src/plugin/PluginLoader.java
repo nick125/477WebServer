@@ -50,15 +50,13 @@ public class PluginLoader<T> {
     private ArrayList<Class<?>> findAllClassesInJarsInWorkingDirectory() {
         ArrayList<Class<?>> allClassesFound = new ArrayList<Class<?>>();
 
-        PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:.\\plugins\\*.jar");
-
         File filePath = new File(".\\plugins");
         File[] filePaths = filePath.listFiles();
 
         if (filePaths == null) return allClassesFound;
 
         for (File file : filePaths) {
-            if (!matcher.matches(file.toPath()))
+            if (!file.getName().endsWith(".jar"))
                 continue;
 
             JarFile jar;

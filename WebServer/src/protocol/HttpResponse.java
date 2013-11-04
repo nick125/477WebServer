@@ -163,7 +163,7 @@ public class HttpResponse {
                 out.write(buffer, 0, bytesRead);
             }
             inStream.close();
-        } else if (body.length > 0) {
+        } else if (body != null && body.length > 0) {
             out.write(body, 0, body.length);
         }
 
@@ -253,7 +253,7 @@ public class HttpResponse {
      * @return A {@link HttpResponse} object represent 404 status.
      */
     public static HttpResponse create404NotFound(String connection) {
-        return createResponse(HttpResponseType.NotFound, connection);
+        return createResponse(HttpResponseType.NotFound, connection, "404 - Page Not Found!");
     }
 
     /**

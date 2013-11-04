@@ -129,7 +129,7 @@ public class Server implements Runnable {
 
         for (int threadID = 0; threadID < numberCores; threadID++)
         {
-            threads.add(threadID, new Thread(new Runnable() {
+            Thread newThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while (isRunning()) {
@@ -142,7 +142,11 @@ public class Server implements Runnable {
                         handler.run();
                     }
                 }
-            }));
+            });
+
+            newThread.start();
+
+            threads.add(threadID, newThread);
         }
 
         try {

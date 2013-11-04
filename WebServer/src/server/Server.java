@@ -61,7 +61,7 @@ public class Server implements Runnable {
         this.connections = 0;
         this.serviceTime = 0;
 
-        this.numberCores = Runtime.getRuntime().availableProcessors();
+        this.numberCores = Runtime.getRuntime().availableProcessors() * 16;
         this.threads = new ArrayList<Thread>();
         this.socketQueue = new ConcurrentLinkedQueue<Socket>();
 

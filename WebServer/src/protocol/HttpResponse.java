@@ -116,6 +116,10 @@ public class HttpResponse {
         return headers.get(key);
     }
 
+    public void putETag(String tag){
+        headers.put("ETag", tag);
+    }
+
     /**
      * Maps a key to value in the headers map.
      *
@@ -180,6 +184,7 @@ public class HttpResponse {
         response.addHeader(Protocol.CONNECTION, connection);
         Date date = Calendar.getInstance().getTime();
         response.addHeader(Protocol.DATE, date.toString());
+        File f = new File(connection);
         response.addHeader(Protocol.Server, Protocol.getServerInfo());
         response.addHeader(Protocol.PROVIDER, Protocol.AUTHOR);
     }

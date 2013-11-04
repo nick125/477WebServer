@@ -100,6 +100,7 @@ public class Protocol {
     public static final String OPEN = "Keep-Alive";
     public static final String DEFAULT_FILE = "index.html";
     public static final String MIME_TEXT = "text";
+    public static final String ETAG = "ETag";
 
 
     /**

@@ -126,7 +126,6 @@ public class Server implements Runnable {
     public void run() {
         // Create the thread pool threads
         final Server server = this;
-
         for (int threadID = 0; threadID < numberCores; threadID++)
         {
             Thread newThread = new Thread(new Runnable() {

@@ -141,7 +141,7 @@ public class ConnectionHandler implements Runnable {
 				case HEAD:
 				case DELETE:
 				case PUT:
-					IRequestHandler handler = getHandlerForURI(request.getUri());
+					IRequestHandler handler = getHandlerForURI(request);
 					response = handler.handleRequest(request);
 					String connectionHeader = request.getHeader("connection");
 					if (connectionHeader != null
@@ -173,29 +173,30 @@ public class ConnectionHandler implements Runnable {
 		}
 	}
 
-	private IRequestHandler getHandlerForURI(String URI) {
-		String[] URISegments = URI.split("/");
+ private IRequestHandler getHandlerForURI(HttpRequest request) {
+        String[] URISegments = request.getUri().split("/");
 
-		// Start at the most specific and go to least specific
-		for (int i = URISegments.length; i > 0; i--) {
-			// Create the path segment
-			StringBuilder buffer = new StringBuilder();
-			for (int j = 0; i > j; j++) {
-				if (URISegments[j].isEmpty())
-					continue;
+        // Start at the most specific and go to least specific
+        for (int i = URISegments.length; i > 0; i--) {
+            // Create the path segment
+            StringBuilder buffer = new StringBuilder();
+            for (int j = 0; i > j; j++) {
+                if (URISegments[j].isEmpty()) continue;
 
-				buffer.append("/");
-				buffer.append(URISegments[j]);
-			}
+                buffer.append("/");
+                buffer.append(URISegments[j]);
+            }
 
-			// Now, try to find a IRequestHandler that will handle this
-			List<IRequestHandler> requestHandlers = this.server
-					.getRequestHandlers();
-			for (IRequestHandler handler : requestHandlers) {
-				if (handler.handlesPath(buffer.toString()))
-					return handler;
-			}
-		}
+            // Now, try to find a IRequestHandler that will handle this
+            List<IRequestHandler> requestHandlers = this.server.getRequestHandlers();
+            for (IRequestHandler handler : requestHandlers) {
+                if (handler.handlesPath(buffer.toString()))
+                {
+                    request.setRelativeUri(request.getUri().replace(buffer.toString(), ""));
+                    return handler;
+                }
+            }
+        }
 
 		return this.defaultRequestHandler;
 	}

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../FileRequestPlugin/FileRequestPlugin.iml" filepath="$PROJECT_DIR$/../FileRequestPlugin/FileRequestPlugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/../TestPlugin/TestPlugin.iml" filepath="$PROJECT_DIR$/../TestPlugin/TestPlugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/WebServer.iml" filepath="$PROJECT_DIR$/WebServer.iml" />
     </modules>

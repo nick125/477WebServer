@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5487eb8-b261-4e65-80dd-ad890e65a05c" name="Default" comment="A bit more cleanup">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/ConnectionHandler.java" afterPath="$PROJECT_DIR$/src/server/ConnectionHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protocol/HttpRequest.java" afterPath="$PROJECT_DIR$/src/protocol/HttpRequest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TestPlugin/src/TestRequestHandler.java" afterPath="$PROJECT_DIR$/../TestPlugin/src/TestRequestHandler.java" />
     </list>
     <ignored path="477WebServer.iws" />
@@ -13,15 +15,15 @@
     <file path="/HttpResponse.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383523699038" ignored="false" />
     <file path="/Server.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383527059739" ignored="false" />
     <file path="/HttpMethod.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383498770160" ignored="false" />
-    <file path="/ConnectionHandler.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383523842382" ignored="false" />
-    <file path="/HttpRequest.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383511628419" ignored="false" />
+    <file path="/ConnectionHandler.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383529155466" ignored="false" />
+    <file path="/HttpRequest.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383529148522" ignored="false" />
     <file path="/HttpResponseType.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383508320799" ignored="false" />
     <file path="/IPlugin.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383509801941" ignored="false" />
     <file path="/ARequestHandler.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383513926578" ignored="false" />
     <file path="/IRequestHandler.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383513872644" ignored="false" />
     <file path="/CaseInsensitiveMap.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383511618500" ignored="false" />
     <file path="/PluginLoader.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383523488831" ignored="false" />
-    <file path="/TestRequestHandler.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383522869026" ignored="false" />
+    <file path="/TestRequestHandler.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383529174455" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +96,7 @@
       <file leaf-file-name="TestRequestHandler.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../TestPlugin/src/TestRequestHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="30" selection-start="254" selection-end="254" vertical-scroll-proportion="0.24113475">
+            <state line="4" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.120567374">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -137,7 +139,16 @@
       <file leaf-file-name="ConnectionHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/ConnectionHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="0" selection-start="1591" selection-end="1591" vertical-scroll-proportion="0.0">
+            <state line="163" column="91" selection-start="5854" selection-end="5854" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpRequest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/protocol/HttpRequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="81" column="33" selection-start="2049" selection-end="2049" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -180,13 +191,13 @@
         <option value="$PROJECT_DIR$/src/plugins/IRequestHandler.java" />
         <option value="$PROJECT_DIR$/src/plugins/ARequestHandler.java" />
         <option value="$PROJECT_DIR$/src/protocol/Protocol.java" />
-        <option value="$PROJECT_DIR$/src/protocol/HttpRequest.java" />
         <option value="$PROJECT_DIR$/src/pluginAPI/ARequestHandler.java" />
         <option value="$PROJECT_DIR$/Plugins/src/TestRequestHandler.java" />
         <option value="$PROJECT_DIR$/src/plugin/PluginLoader.java" />
-        <option value="$PROJECT_DIR$/src/server/ConnectionHandler.java" />
         <option value="$PROJECT_DIR$/src/protocol/HttpResponse.java" />
         <option value="$PROJECT_DIR$/src/server/Server.java" />
+        <option value="$PROJECT_DIR$/src/protocol/HttpRequest.java" />
+        <option value="$PROJECT_DIR$/src/server/ConnectionHandler.java" />
         <option value="$PROJECT_DIR$/../TestPlugin/src/TestRequestHandler.java" />
       </list>
     </option>
@@ -287,6 +298,10 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -350,7 +365,16 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="477WebServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -561,7 +585,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -569,7 +593,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15832427" sideWeight="0.67045456" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -675,6 +699,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="140" column="0" selection-start="4019" selection-end="4019" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#3667#4208#0" expanded="true" />
+            <element signature="e#4193#4194#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pluginAPI/ARequestHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="23" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0">
@@ -691,26 +725,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/ConnectionHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/protocol/HttpRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="0" selection-start="1591" selection-end="1591" vertical-scroll-proportion="0.0">
+        <state line="81" column="33" selection-start="2049" selection-end="2049" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/server/ConnectionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="140" column="0" selection-start="4019" selection-end="4019" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#3667#4208#0" expanded="true" />
-            <element signature="e#4193#4194#0" expanded="true" />
-          </folding>
+        <state line="163" column="91" selection-start="5854" selection-end="5854" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../TestPlugin/src/TestRequestHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="30" selection-start="254" selection-end="254" vertical-scroll-proportion="0.24113475">
+        <state line="4" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.120567374">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

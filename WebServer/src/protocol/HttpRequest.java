@@ -42,6 +42,7 @@ public class HttpRequest {
     private String version;
     private Map<String, String> header;
     private String body;
+    private String relativeUri;
 
     private Map<String, String> queryParameters;
 
@@ -66,6 +67,19 @@ public class HttpRequest {
      */
     public String getUri() {
         return uri;
+    }
+
+    /**
+     * The relative URI of the request object.
+     *
+     * @return the uri
+     */
+    public String getRelativeUri() {
+        return relativeUri;
+    }
+
+    public void setRelativeUri(String value) {
+        this.relativeUri = value;
     }
 
     /**

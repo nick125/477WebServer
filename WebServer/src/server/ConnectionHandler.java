@@ -126,7 +126,7 @@ public class ConnectionHandler implements Runnable {
                 case HEAD:
                 case DELETE:
                 case PUT:
-                    IRequestHandler handler = getHandlerForURI(request.getUri());
+                    IRequestHandler handler = getHandlerForURI(request);
                     response = handler.handleRequest(request);
                     break;
                 default:
@@ -142,8 +142,8 @@ public class ConnectionHandler implements Runnable {
         writeResponse(start, outStream, response);
     }
 
-    private IRequestHandler getHandlerForURI(String URI) {
-        String[] URISegments = URI.split("/");
+    private IRequestHandler getHandlerForURI(HttpRequest request) {
+        String[] URISegments = request.getUri().split("/");
 
         // Start at the most specific and go to least specific
         for (int i = URISegments.length; i > 0; i--) {
@@ -160,7 +160,10 @@ public class ConnectionHandler implements Runnable {
             List<IRequestHandler> requestHandlers = this.server.getRequestHandlers();
             for (IRequestHandler handler : requestHandlers) {
                 if (handler.handlesPath(buffer.toString()))
+                {
+                    request.setRelativeUri(request.getUri().replace(buffer.toString(), ""));
                     return handler;
+                }
             }
         }
 

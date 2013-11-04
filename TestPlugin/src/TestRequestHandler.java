@@ -6,7 +6,7 @@ import protocol.HttpResponseType;
 public class TestRequestHandler extends ARequestHandler {
     public TestRequestHandler()
     {
-        roots.add("/");
+        roots.add("/TestPlugin");
     }
 
     @Override

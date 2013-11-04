@@ -29,6 +29,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.locks.Lock;
 
 /**
  * This represents a welcoming server for the incoming
@@ -37,6 +39,11 @@ import java.util.List;
  * @author Chandan R. Rupakheti (rupakhet@rose-hulman.edu)
  */
 public class Server implements Runnable {
+    private final int numberCores;
+    private final ArrayList<Thread> threads;
+
+    private final ConcurrentLinkedQueue<Socket> socketQueue;
+
     private int port;
     private boolean stop;
     private ServerSocket socket;
@@ -54,6 +61,10 @@ public class Server implements Runnable {
         this.stop = false;
         this.connections = 0;
         this.serviceTime = 0;
+
+        this.numberCores = Runtime.getRuntime().availableProcessors();
+        this.threads = new ArrayList<Thread>();
+        this.socketQueue = new ConcurrentLinkedQueue<Socket>();
 
         this.requestHandlers = new ArrayList<IRequestHandler>();
     }
@@ -113,6 +124,27 @@ public class Server implements Runnable {
      * the request.
      */
     public void run() {
+        // Create the thread pool threads
+        final Server server = this;
+
+        for (int threadID = 0; threadID < numberCores; threadID++)
+        {
+            threads.add(threadID, new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (isRunning()) {
+                        // Check the socket queue
+                        Socket queuedSocket = socketQueue.poll();
+                        if (queuedSocket == null) continue;
+
+                        // Start a connection handler
+                        ConnectionHandler handler = new ConnectionHandler(server, queuedSocket);
+                        handler.run();
+                    }
+                }
+            }));
+        }
+
         try {
             this.socket = new ServerSocket(port);
 
@@ -122,9 +154,8 @@ public class Server implements Runnable {
                 // This method block until somebody makes a request
                 Socket connectionSocket = this.socket.accept();
 
-                // Create a handler for this incoming connection and start the handler in a new thread
-                ConnectionHandler handler = new ConnectionHandler(this, connectionSocket);
-                new Thread(handler).start();
+                // Queue the connection
+                socketQueue.add(connectionSocket);
             }
 
             this.socket.close();

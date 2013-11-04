@@ -2,6 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5487eb8-b261-4e65-80dd-ad890e65a05c" name="Default" comment="A bit more cleanup">
+      <change type="MOVED" beforePath="C:\Users\Nicholas\SkyDrive\Documents\Classes\CSSE477\477WebServer\WebServer\src\TestPlugin\.classpath" afterPath="$PROJECT_DIR$/../TestPlugin/.classpath" />
+      <change type="MOVED" beforePath="C:\Users\Nicholas\SkyDrive\Documents\Classes\CSSE477\477WebServer\WebServer\src\TestPlugin\.project" afterPath="$PROJECT_DIR$/../TestPlugin/.project" />
+      <change type="MOVED" beforePath="C:\Users\Nicholas\SkyDrive\Documents\Classes\CSSE477\477WebServer\WebServer\src\TestPlugin\META-INF\MANIFEST.MF" afterPath="$PROJECT_DIR$/../TestPlugin/META-INF/MANIFEST.MF" />
+      <change type="MOVED" beforePath="C:\Users\Nicholas\SkyDrive\Documents\Classes\CSSE477\477WebServer\WebServer\src\TestPlugin\TestPlugin.eml" afterPath="$PROJECT_DIR$/../TestPlugin/TestPlugin.eml" />
+      <change type="MOVED" beforePath="C:\Users\Nicholas\SkyDrive\Documents\Classes\CSSE477\477WebServer\WebServer\src\TestPlugin\TestPlugin.iml" afterPath="$PROJECT_DIR$/../TestPlugin/TestPlugin.iml" />
+      <change type="MOVED" beforePath="C:\Users\Nicholas\SkyDrive\Documents\Classes\CSSE477\477WebServer\WebServer\src\TestPlugin\src\TestRequestHandler.java" afterPath="$PROJECT_DIR$/../TestPlugin/src/TestRequestHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/Plugins.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Plugins.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/Server.java" afterPath="$PROJECT_DIR$/src/server/Server.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebServer.iml" afterPath="$PROJECT_DIR$/WebServer.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="477WebServer.iws" />
@@ -11,7 +21,7 @@
     <file path="/HttpResponseFactory.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383497011125" ignored="false" />
     <file path="/Protocol.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383521913227" ignored="false" />
     <file path="/HttpResponse.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383523699038" ignored="false" />
-    <file path="/Server.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383523143180" ignored="false" />
+    <file path="/Server.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383526831031" ignored="false" />
     <file path="/HttpMethod.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383498770160" ignored="false" />
     <file path="/ConnectionHandler.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383523842382" ignored="false" />
     <file path="/HttpRequest.java" changelist="d5487eb8-b261-4e65-80dd-ad890e65a05c" time="1383511628419" ignored="false" />
@@ -92,9 +102,9 @@
         </entry>
       </file>
       <file leaf-file-name="TestRequestHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TestPlugin/src/TestRequestHandler.java">
+        <entry file="file://$PROJECT_DIR$/../TestPlugin/src/TestRequestHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="264" selection-end="264" vertical-scroll-proportion="0.0">
+            <state line="10" column="0" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,11 +112,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Server.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="187" column="0" selection-start="5440" selection-end="5440" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="157" column="50" selection-start="4685" selection-end="4685" vertical-scroll-proportion="0.8984064">
+              <folding>
+                <element signature="e#3670#4211#0" expanded="true" />
+                <element signature="e#4196#4197#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -122,10 +135,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpResponse.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="HttpResponse.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/protocol/HttpResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="262" column="36" selection-start="9328" selection-end="9328" vertical-scroll-proportion="0.6374502">
+            <state line="262" column="36" selection-start="9328" selection-end="9328" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -181,10 +194,10 @@
         <option value="$PROJECT_DIR$/src/protocol/HttpRequest.java" />
         <option value="$PROJECT_DIR$/src/pluginAPI/ARequestHandler.java" />
         <option value="$PROJECT_DIR$/Plugins/src/TestRequestHandler.java" />
-        <option value="$PROJECT_DIR$/src/server/Server.java" />
         <option value="$PROJECT_DIR$/src/plugin/PluginLoader.java" />
         <option value="$PROJECT_DIR$/src/server/ConnectionHandler.java" />
         <option value="$PROJECT_DIR$/src/protocol/HttpResponse.java" />
+        <option value="$PROJECT_DIR$/src/server/Server.java" />
       </list>
     </option>
   </component>
@@ -249,20 +262,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="477WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="477WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="477WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="WebServer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -271,58 +270,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="477WebServer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="477WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TestPlugin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="477WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="477WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TestPlugin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="477WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="477WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="WebServer" />
@@ -343,10 +290,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="477WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="WebServer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -359,10 +302,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="477WebServer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="477WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="WebServer" />
@@ -383,10 +322,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="477WebServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="WebServer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -399,13 +334,37 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="477WebServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TestPlugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="477WebServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TestPlugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
@@ -413,7 +372,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -428,6 +387,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Nicholas\SkyDrive\Documents\Classes\CSSE477\477WebServer" />
       <recent name="C:\Users\Nicholas\SkyDrive\Documents\Classes\CSSE477\477WebServer\WebServer\src\TestPlugin" />
       <recent name="C:\Users\Nicholas\SkyDrive\Documents\Classes\CSSE477\477WebServer\WebServer\src" />
     </key>
@@ -702,16 +662,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/Server.java">
+    <entry file="file://$PROJECT_DIR$/../TestPlugin/src/TestRequestHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="0" selection-start="5440" selection-end="5440" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TestPlugin/src/TestRequestHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="264" selection-end="264" vertical-scroll-proportion="0.0">
+        <state line="10" column="0" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -750,6 +703,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/protocol/HttpResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="262" column="36" selection-start="9328" selection-end="9328" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/server/ConnectionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="153" column="0" selection-start="5353" selection-end="5353" vertical-scroll-proportion="0.0">
@@ -757,10 +717,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/protocol/HttpResponse.java">
+    <entry file="file://$PROJECT_DIR$/src/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="262" column="36" selection-start="9328" selection-end="9328" vertical-scroll-proportion="0.6374502">
-          <folding />
+        <state line="157" column="50" selection-start="4685" selection-end="4685" vertical-scroll-proportion="0.8984064">
+          <folding>
+            <element signature="e#3670#4211#0" expanded="true" />
+            <element signature="e#4196#4197#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

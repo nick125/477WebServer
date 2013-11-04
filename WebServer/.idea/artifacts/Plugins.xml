@@ -4,7 +4,7 @@
     <root id="archive" name="TestPlugin.jar">
       <element id="module-output" name="TestPlugin" />
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/src/TestPlugin/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/../TestPlugin/META-INF/MANIFEST.MF" />
       </element>
     </root>
   </artifact>

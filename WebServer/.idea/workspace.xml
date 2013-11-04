@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5487eb8-b261-4e65-80dd-ad890e65a05c" name="Default" comment="A bit more cleanup">
-      <change type="MOVED" beforePath="C:\Users\Nicholas\SkyDrive\Documents\Classes\CSSE477\477WebServer\META-INF\MANIFEST.MF" afterPath="$PROJECT_DIR$/src/TestPlugin/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/Plugins.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Plugins.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="477WebServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -598,7 +597,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="5" width="1900" height="1040" extended-state="1" />
+    <frame x="10" y="5" width="1900" height="1040" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
